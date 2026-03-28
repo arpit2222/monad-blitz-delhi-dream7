@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Archivo+Black&family=Badeen+Display&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Pixelify+Sans:wght@400..700&family=Science+Gothic:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,125 +6,201 @@
 
 @layer base {
   :root {
-    /* === SHADCN/NEOBRUTALISM BASE === */
-    --background: 50 100% 97%;
-    --foreground: 0 0% 0%;
-    --card: 220 13% 10%;
-    --card-foreground: 0 0% 100%;
-    --popover: 50 100% 97%;
-    --popover-foreground: 0 0% 0%;
-    --secondary-background: 30 100% 97%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: 220 10% 40%;
-    --muted-foreground: 220 10% 60%;
-    --accent: 30 50% 90%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 10% 20%;
-    --input: 0 0% 100%;
-    --ring: 0 0% 0%;
-    --radius: 6px;
-    
-    /* === PRIMARY ACCENT (Somnia palette) === */
-    --main: 194 100% 61%;
-    --main-foreground: 0 0% 0%;
-    
-    /* === GAME DESIGN SYSTEM === */
-    --color-bg-dark: #04050b;
-    --color-bg-card: #0b1020;
-    --color-bg-elevated: #11172c;
-    --color-border-subtle: #2a3352;
+    --bg-base:       #050A1A;
+    --bg-card:       #0A1628;
+    --bg-card-hover: #0F1E38;
+    --border:        #1A2E50;
+    --primary:       #19388A;
+    --primary-light: #2756D6;
+    --accent-yellow: #F9C80E;
+    --accent-red:    #D71921;
+    --accent-green:  #00C853;
+    --accent-cyan:   #00B4D8;
+    --text-primary:  #FFFFFF;
+    --text-secondary:#8BA3CC;
+    --text-muted:    #4A6080;
 
-    /* Somnia gradient palette */
-    --color-primary: #4ad6ff;
-    --color-primary-hover: #6de2ff;
-    --color-primary-dark: #2f93ff;
-    --color-purple: #6f3cff;
-    --color-purple-dark: #5521e0;
-    --color-purple-light: #9358ff;
-    --color-pink: #ff1f9f;
-    --color-pink-dark: #d90f87;
-    
-    /* Semantic Colors */
-    --color-success: #22C55E;
-    --color-danger: #EF4444;
-    --color-warning: #F97316;
-    
-    /* Legacy (keeping for compatibility) */
-    --color-lime: #4ad6ff;
-    --color-yellow: #FACC15;
-    
-    /* Text */
-    --color-text-primary: #FFFFFF;
-    --color-text-secondary: #A1A1AA;
-    --color-text-muted: #71717A;
+    /* shadcn compat */
+    --background: 220 50% 5%;
+    --foreground: 0 0% 100%;
+    --card: 215 45% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 215 45% 10%;
+    --popover-foreground: 0 0% 100%;
+    --secondary-background: 215 40% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 215 25% 25%;
+    --muted-foreground: 215 30% 55%;
+    --accent: 215 40% 15%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 356 80% 47%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 40% 20%;
+    --input: 215 40% 15%;
+    --ring: 220 65% 32%;
+    --radius: 12px;
+
+    --main: 194 100% 42%;
+    --main-foreground: 0 0% 0%;
   }
 
   * {
-    @apply border-border;
+    border-color: var(--border);
   }
 
   body {
-    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    background:
-      radial-gradient(circle at 15% 10%, rgba(74, 214, 255, 0.16), transparent 35%),
-      radial-gradient(circle at 85% 20%, rgba(111, 60, 255, 0.14), transparent 40%),
-      radial-gradient(circle at 75% 85%, rgba(255, 31, 159, 0.14), transparent 45%),
-      var(--color-bg-dark);
-    color: var(--color-text-primary);
-    font-feature-settings: "ss01", "ss02", "cv01";
+    background: var(--bg-base);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(25, 56, 138, 0.3), transparent),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(0, 180, 216, 0.08), transparent);
+    color: var(--text-primary);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    min-height: 100vh;
     @apply antialiased;
   }
 
-  .bg-grid {
-    background-image: 
-      linear-gradient(rgba(74, 214, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(111, 60, 255, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+  h1, h2, h3, .heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 }
 
 @layer components {
-  .game-card {
-    @apply border-2 rounded-xl;
-    background-color: var(--color-bg-card);
-    border-color: var(--color-primary);
+  .d7-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    @apply rounded-xl;
   }
 
-  .game-input {
-    @apply w-full px-4 py-2.5 text-sm font-medium rounded-md outline-none transition-colors;
-    background-color: var(--color-bg-elevated);
-    border: 2px solid var(--color-border-subtle);
+  .d7-card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .d7-card-hover:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--primary-light);
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(25,56,138,0.4);
+  }
+
+  .d7-input {
+    @apply w-full px-4 py-2.5 text-sm font-medium rounded-lg outline-none transition-colors;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     color: white;
   }
 
-  .game-input:focus {
-    border-color: var(--color-primary);
+  .d7-input:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 2px rgba(39,86,214,0.3);
   }
 
-  .game-input::placeholder {
-    color: var(--color-text-muted);
+  .d7-input::placeholder {
+    color: var(--text-muted);
   }
 
-  .btn-game {
-    @apply px-4 py-2.5 font-semibold rounded-md transition-all;
-    @apply border-2 border-black shadow-brutal;
-    @apply hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none;
+  .d7-btn {
+    @apply px-6 py-3 font-semibold rounded-lg transition-all duration-200;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .d7-btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+
+  .d7-btn-primary:hover {
+    background: var(--primary-light);
+    box-shadow: 0 0 20px rgba(39,86,214,0.4);
+  }
+
+  .d7-btn-green {
+    background: rgba(0, 200, 83, 0.15);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+  }
+
+  .d7-btn-green:hover {
+    background: rgba(0, 200, 83, 0.25);
+    box-shadow: 0 0 15px rgba(0,200,83,0.3);
+  }
+
+  .d7-btn-red {
+    background: rgba(215, 25, 33, 0.15);
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+  }
+
+  .d7-btn-red:hover {
+    background: rgba(215, 25, 33, 0.25);
+    box-shadow: 0 0 15px rgba(215,25,33,0.3);
   }
 }
 
 @layer utilities {
-  .text-success { color: var(--color-success); }
-  .text-danger { color: var(--color-danger); }
-  .text-muted { color: var(--color-text-muted); }
-  .text-secondary { color: var(--color-text-secondary); }
-  .text-primary-accent { color: var(--color-primary); }
-  .bg-game-card { background-color: var(--color-bg-card); }
-  .bg-game-elevated { background-color: var(--color-bg-elevated); }
-  .bg-primary { background-color: var(--color-primary); }
-  .bg-lime { background-color: var(--color-primary); }
-  .border-purple { border-color: var(--color-purple); }
-  .border-subtle { border-color: var(--color-border-subtle); }
-  .border-primary { border-color: var(--color-primary); }
+  .font-display { font-family: 'Rajdhani', sans-serif; }
+  .font-body { font-family: 'DM Sans', sans-serif; }
+  .font-mono-stats { font-family: 'JetBrains Mono', monospace; }
+  .text-d7-primary { color: var(--text-primary); }
+  .text-d7-secondary { color: var(--text-secondary); }
+  .text-d7-muted { color: var(--text-muted); }
+  .text-d7-yellow { color: var(--accent-yellow); }
+  .text-d7-green { color: var(--accent-green); }
+  .text-d7-red { color: var(--accent-red); }
+  .text-d7-cyan { color: var(--accent-cyan); }
+  .bg-d7-base { background: var(--bg-base); }
+  .bg-d7-card { background: var(--bg-card); }
+  .bg-d7-card-hover { background: var(--bg-card-hover); }
+  .border-d7 { border-color: var(--border); }
+}
+
+@keyframes livePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(0, 200, 83, 0); }
+}
+
+@keyframes cricketSpin {
+  0%, 100% { transform: rotate(-10deg); }
+  50%      { transform: rotate(10deg); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes betFlash {
+  0%   { opacity: 0.1; }
+  100% { opacity: 0; }
+}
+
+.animate-live-pulse {
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+.animate-cricket-spin {
+  animation: cricketSpin 3s ease-in-out infinite;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-fade-out {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(139, 163, 204, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
 }

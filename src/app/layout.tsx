@@ -1,25 +1,25 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Providers } from "@/providers/Providers";
-import { ToastContainer } from "react-toastify";
+import AppShell from "@/components/layout/AppShell";
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#04050b",
+  themeColor: "#050A1A",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
-  title: "Monad Embedded Wallet Example",
+  title: "Dream7 — IPL Prediction Wall on Monad",
   description:
-    "A Monad Testnet counter application template with Privy wallet login, deposit, withdraw, and on-chain counter actions.",
-  keywords: ["monad", "counter", "template", "privy", "wagmi", "viem", "web3"],
-  authors: [{ name: "Monad Embedded Wallet Example" }],
+    "Bet YES or NO on IPL moments. Instant, on-chain, cheap. Built on Monad testnet.",
+  keywords: ["dream7", "ipl", "prediction", "monad", "cricket", "web3", "betting"],
+  authors: [{ name: "Dream7" }],
   openGraph: {
-    title: "Monad Embedded Wallet Example",
+    title: "Dream7 — IPL Prediction Wall on Monad",
     description:
-      "Start from a production-ready Monad counter template with wallet UX and contract integration.",
+      "Bet YES or NO on IPL moments. Instant, on-chain, cheap.",
     type: "website",
     locale: "en_US",
     images: [
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
         url: "/icon.png",
         width: 512,
         height: 512,
-        alt: "Monad Embedded Wallet Example",
+        alt: "Dream7",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "Monad Embedded Wallet Example",
+    title: "Dream7 — IPL Prediction Wall on Monad",
     description:
-      "Monad counter template with wallet login, deposit/withdraw, and on-chain increment.",
+      "Bet YES or NO on IPL moments. Instant, on-chain, cheap.",
     images: ["/icon.png"],
   },
   robots: {
@@ -53,20 +53,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <Providers>
-          {children}
-           <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover
-          theme="dark"
-          toastClassName={ "bg-zinc-900 border-2 border-main rounded-md text-white shadow-brutal-sm font-medium font-sans"}
-        />
+          <AppShell>
+            {children}
+          </AppShell>
         </Providers>
       </body>
     </html>

@@ -49,5 +49,5 @@ export const wagmiConfig = createConfig({
 export const CONTRACT_ADDRESSES = {
   // Set NEXT_PUBLIC_COUNTER_ADDRESS to override the deployed counter address.
   counter: (process.env.NEXT_PUBLIC_COUNTER_ADDRESS as `0x${string}` | undefined)
-    ?? "0x65138ffa2eC30375776627bFF6318D3e792Bd0B9",
+    ?? "0x0864Ee7B66562c1be4E5B365800fA3f283AFB7A3",
 } as const;
