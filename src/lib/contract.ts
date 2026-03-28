@@ -1,4 +1,4 @@
-export const DREAM7_ADDRESS = "0x0864Ee7B66562c1be4E5B365800fA3f283AFB7A3" as `0x${string}`;
+export const DREAM7_ADDRESS = "0x46C67e8ba1B9b13Cb62E52c8BFCFc93C96431321" as `0x${string}`;
 
 export const DREAM7_ABI = [
   // createMarket
@@ -111,6 +111,17 @@ export const DREAM7_ABI = [
   // claimed
   {
     name: "claimed",
+    type: "function",
+    stateMutability: "view",
+    inputs: [
+      { name: "marketId", type: "uint256" },
+      { name: "user", type: "address" },
+    ],
+    outputs: [{ type: "bool" }],
+  },
+  // hasBet
+  {
+    name: "hasBet",
     type: "function",
     stateMutability: "view",
     inputs: [

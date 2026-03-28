@@ -10,12 +10,13 @@ import { playYesSound, playNoSound } from "@/lib/sounds";
 
 interface BetFormProps {
   market: Market;
+  userHasBet?: boolean;
   onBetPlaced?: () => void;
 }
 
 const PRESETS = ["0.01", "0.05", "0.1"];
 
-export default function BetForm({ market, onBetPlaced }: BetFormProps) {
+export default function BetForm({ market, userHasBet, onBetPlaced }: BetFormProps) {
   const { isConnected } = useAccount();
   const { showToast, dismissAll } = useToast();
   const [side, setSide] = useState<"yes" | "no">("yes");
@@ -112,6 +113,14 @@ export default function BetForm({ market, onBetPlaced }: BetFormProps) {
 
   if (market.resolved) {
     return null; // Claim UI is handled separately
+  }
+
+  if (userHasBet) {
+    return (
+      <div className="d7-card p-6 text-center">
+        <p className="text-d7-cyan text-sm font-semibold">🎯 You already placed your bet on this market!</p>
+      </div>
+    );
   }
 
   return (

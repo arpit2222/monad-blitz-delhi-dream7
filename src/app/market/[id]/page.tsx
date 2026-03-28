@@ -68,6 +68,12 @@ export default function MarketDetailPage({ params }: PageProps) {
         functionName: "claimed" as const,
         args: [marketId, userAddress] as const,
       },
+      {
+        address: DREAM7_ADDRESS,
+        abi: DREAM7_ABI,
+        functionName: "hasBet" as const,
+        args: [marketId, userAddress] as const,
+      },
     ];
   }, [userAddress, marketId]);
 
@@ -85,6 +91,7 @@ export default function MarketDetailPage({ params }: PageProps) {
   const userYesBet = (userBetsData?.[0]?.result as unknown as [bigint, bigint])?.[0] ?? 0n;
   const userNoBet = (userBetsData?.[0]?.result as unknown as [bigint, bigint])?.[1] ?? 0n;
   const hasClaimed = (userBetsData?.[1]?.result as unknown as boolean) ?? false;
+  const userHasBet = (userBetsData?.[2]?.result as unknown as boolean) ?? false;
 
   const totalPool = (market?.yesPool ?? 0n) + (market?.noPool ?? 0n);
   const now = Math.floor(Date.now() / 1000);
@@ -311,7 +318,7 @@ export default function MarketDetailPage({ params }: PageProps) {
           </div>
 
           {/* Bet Form */}
-          {isLive && <BetForm market={market} onBetPlaced={handleRefresh} />}
+          {isLive && <BetForm market={market} userHasBet={userHasBet} onBetPlaced={handleRefresh} />}
         </div>
 
         {/* Right Column - 2/5 */}

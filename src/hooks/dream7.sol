@@ -36,6 +36,7 @@ contract Dream7 {
     mapping(uint256 => mapping(address => uint256))     public yesBets;
     mapping(uint256 => mapping(address => uint256))     public noBets;
     mapping(uint256 => mapping(address => bool))        public claimed;
+    mapping(uint256 => mapping(address => bool))        public hasBet;
 
     // ─────────────────────────────────────────────
     //  EVENTS
@@ -162,15 +163,17 @@ contract Dream7 {
     //  PUBLIC — betYes
     // ─────────────────────────────────────────────
 
-    /// @notice Place a YES bet. Send MON as msg.value.
+    /// @notice Place a YES bet. Send MON as msg.value. One bet per user per market.
     function betYes(uint256 marketId) external payable {
         Market storage m = markets[marketId];
         require(block.timestamp < m.deadline, "Dream7: betting closed");
         require(!m.resolved,                  "Dream7: already resolved");
+        require(!hasBet[marketId][msg.sender], "Dream7: already placed a bet");
         require(msg.value >= m.minBet,         "Dream7: bet too small");
         require(msg.value <= m.maxBet,         "Dream7: bet too large");
 
-        yesBets[marketId][msg.sender] += msg.value;
+        hasBet[marketId][msg.sender] = true;
+        yesBets[marketId][msg.sender] = msg.value;
         m.yesPool += msg.value;
 
         emit BetPlaced(marketId, msg.sender, true, msg.value);
@@ -180,15 +183,17 @@ contract Dream7 {
     //  PUBLIC — betNo
     // ─────────────────────────────────────────────
 
-    /// @notice Place a NO bet. Send MON as msg.value.
+    /// @notice Place a NO bet. Send MON as msg.value. One bet per user per market.
     function betNo(uint256 marketId) external payable {
         Market storage m = markets[marketId];
         require(block.timestamp < m.deadline, "Dream7: betting closed");
         require(!m.resolved,                  "Dream7: already resolved");
+        require(!hasBet[marketId][msg.sender], "Dream7: already placed a bet");
         require(msg.value >= m.minBet,         "Dream7: bet too small");
         require(msg.value <= m.maxBet,         "Dream7: bet too large");
 
-        noBets[marketId][msg.sender] += msg.value;
+        hasBet[marketId][msg.sender] = true;
+        noBets[marketId][msg.sender] = msg.value;
         m.noPool += msg.value;
 
         emit BetPlaced(marketId, msg.sender, false, msg.value);
@@ -198,11 +203,10 @@ contract Dream7 {
     //  ADMIN — resolveMarket
     // ─────────────────────────────────────────────
 
-    /// @notice Admin sets the final outcome after deadline.
+    /// @notice Admin sets the final outcome. Can resolve before deadline.
     function resolveMarket(uint256 marketId, bool outcomeYes) external onlyAdmin {
         Market storage m = markets[marketId];
-        require(!m.resolved,                        "Dream7: already resolved");
-        require(block.timestamp >= m.deadline,       "Dream7: too early to resolve");
+        require(!m.resolved, "Dream7: already resolved");
 
         m.resolved   = true;
         m.outcomeYes = outcomeYes;

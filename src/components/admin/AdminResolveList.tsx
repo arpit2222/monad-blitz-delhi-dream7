@@ -17,10 +17,7 @@ export default function AdminResolveList({ markets, onResolved }: AdminResolveLi
   const [pendingId, setPendingId] = useState<bigint | null>(null);
   const { writeContract } = useWriteContract();
 
-  const now = Math.floor(Date.now() / 1000);
-  const unresolvedMarkets = markets.filter(
-    (m) => !m.resolved && Number(m.deadline) <= now
-  );
+  const unresolvedMarkets = markets.filter((m) => !m.resolved);
 
   const handleResolve = async (marketId: bigint, outcomeYes: boolean) => {
     if (!isConnected) {
